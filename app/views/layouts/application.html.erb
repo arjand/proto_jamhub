@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <head>
-  <title>Fiction Gun | <%= yield :title %></title>
+  <title>Jam Hub<%= yield :title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="container">
+  
+    <div class="container">
+  
+  <div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">Title</a>
+    <ul class="nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+    </ul>
+  </div>
+</div>
+
+
     <% if flash[:notice] %>
       <div class="alert alert-info"><%= flash[:notice] %></div>
     <% end %>
@@ -24,6 +38,7 @@
         <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
       <% end %>
     </div>
+  
     <h4><%= link_to 'JamHub', root_path%></h4>
     <h5>Global music collaboration.</h5>
     <br><br>

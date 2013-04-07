@@ -1,3 +1,4 @@
+
 <div class="connect-with-soundcloud <%= "connected" if logged_in? %>">
   <%= link_to "Connect With SoundCloud",    soundcloud_connect_path, :class => "connect" %>
   <%= link_to "Disconnect From SoundCloud", soundcloud_disconnect_path, :class => "disconnect" %>
@@ -7,7 +8,104 @@
   </span>
 </div>
 
+<!-- Begin Devon Edits -->
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Jam Hub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+
+
+    </style>
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="bootstrap/js/html5shiv.js"></script>
+    <![endif]-->
+
+
+  </head>
+
+  <body>
+
+
+  
+  <div class="jh-hero">
+    <p>Write songs together, from anywhere.</p>
+    <form method="post" action="mail-form.php" class="form" id="email">
+        <input type="text" class="input-medium" placeholder="Email"></input>
+          <button type="submit" class="btn btn-large btn-danger"><i class="icon-envelope icon-white"></i>  Request Invite</button>
+        
+       </form>
+
+  </div>
+  
+   <div class="container">
+
+
+
+      <!-- Example row of columns -->
+      <div class="row points">
+        <div class="span4">
+          <h2>Jam on your own time.</h2>
+          <p>Your guitarist moved to Japan and your drummer left for Colorado? Keep writing songs together with Jam Hub!</p>
+
+        </div>
+        <div class="span4">
+          <h2>Keep Track of Ideas.</h2>
+          <p>No more brilliant songs lost in the maze of email and shared folders. Keep all your tracks in one place.</p>
+
+       </div>
+        <div class="span4">
+          <h2>Meet New Bandmates.</h2>
+          <p>Meet the musicians who finally understand your style, and broaden your horizons with Jam Hub.</p>
+
+        </div>
+      </div>
+      
+      
+
+      <hr>
+
+      <footer>
+        <p>&copy; Jam Hub 2013</p>
+      </footer>
+
+    </div> <!-- /container -->
+  
+</div>
+
+
+   
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="bootstrap/js/jquery.js"></script>
+    <script src="bootstrap/js/bootstrap-transition.js"></script>
+    <script src="bootstrap/js/bootstrap-alert.js"></script>
+    <script src="bootstrap/js/bootstrap-modal.js"></script>
+    <script src="bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="bootstrap/js/bootstrap-tab.js"></script>
+    <script src="bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="bootstrap/js/bootstrap-popover.js"></script>
+    <script src="bootstrap/js/bootstrap-button.js"></script>
+    <script src="bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="bootstrap/js/bootstrap-typeahead.js"></script>
+
+  </body>
+</html>
+
+<!-- End Devon Edits -->
 
 <div class="visible-when-logged-in <%= "hidden" unless logged_in? %>"">
   <%= link_to "Check out your profile infos", you_path %>
