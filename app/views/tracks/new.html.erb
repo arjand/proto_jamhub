@@ -1,5 +1,6 @@
-<h1>New track</h1>
+<%= flash[:notice] %>
+<%= flash[:alert] %>
+
+<% provide :title, "New Track" %>
 
 <%= render 'form' %>
-
-<%= link_to 'Back', tracks_path %>

@@ -4,5 +4,6 @@ class Track < ActiveRecord::Base
 
   has_many :compilations
   has_many :songs, :through => :compilations
+  belongs_to :user
 
 end

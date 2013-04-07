@@ -28,6 +28,8 @@
     <% @song.tracks.each do |track| %>
       <tr>
         <td><%= track.title %></td>
+        <td><%= track.user.jam_name %></td> 
+        <td><%= track.description %></td>            
         <td><%= link_to 'Edit', edit_track_path(track), :class => 'btn btn-primary' %></td>
         <td><%= link_to 'Delete', track, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
       </tr>
@@ -36,7 +38,7 @@
 <% end %>
 
 <% if @song.users.include?(current_user) %>
-  <%= link_to 'Add a Track', compilations_path, :method => :post, :class => 'btn btn-primary' %>
+  <%= link_to 'Add a Track', new_track_path(current_user), :method => :post, :class => 'btn btn-primary' %>
 <% end %>
 
 <% if @song.contributions.find_by_user_id(current_user.id).owner? %>

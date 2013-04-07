@@ -1,12 +1,13 @@
 <% provide :title, "#{@user.jam_name}'s Profile" %>
+<% if @user == current_user %>
+  <%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-small btn-primary' %>
+<% end %>
 
 <table class="table">
   <tr><td><b>Jam Name:</b></td><td><%= @user.jam_name %></td>
-    <td><%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %></td>
   </tr>
   <tr>
     <td><b>Email:</b></td><td><%= @user.email %></td>
-    <td><%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %></td>
   </tr>
   <tr><td><b>Member Since:</b></td><td><%= @user.created_at.localtime.strftime("%x") %></td></tr>
 </table>
@@ -25,13 +26,39 @@
       <td><%= link_to "#{song.users.first.jam_name}", user_path(song.users.first.id) %></td>
       <td><%= song.description %></td>
       <% if current_user.id == @user.id %>
-        <td><%= link_to 'Edit', edit_song_path(song), :class => 'btn btn-primary' %></td>
-        <td><%= link_to 'Delete', song, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+        <td><%= link_to 'Edit', edit_song_path(song), :class => 'btn btn-small btn-primary' %></td>
+        <td><%= link_to 'Delete', song, :class => 'btn btn-small btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
       <% end %>
     </tr>
   <% end %>
 </table>
 
 <% if @user == current_user %>
-  <%= link_to 'Add Song', new_song_path, :class => 'btn btn-primary' %>
+  <%= link_to 'Add a Song', new_song_path, :class => 'btn btn-primary' %>
+<% end %>
+
+<h3><%= "#{@user.jam_name}'s Tracks" %></h3>
+
+<table class="table">
+  <tr>
+    <td>Title</td>
+    <td>Originator</td>
+    <td>Description</td>
+  </tr>
+  <% @user.tracks.each do |track| %>
+    <tr>
+      <td><%= track.title %></td>
+      <td><%= link_to "#{track.user.jam_name}", user_path(track.user.id) %></td>
+      <td><%= track.description %></td>
+      <% if current_user.id == @user.id %>
+        <td><%= link_to 'Edit', edit_track_path(track), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', track, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+
+<% if @user == current_user %>
+  <%= link_to 'Add a Track', new_track_path, :class => 'btn btn-primary' %>
 <% end %>

@@ -7,6 +7,14 @@
 </head>
 <body>
   <div class="container">
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <%= link_to "Musicians", users_path, :class => 'btn btn-primary' %>
+        <%= link_to "Titles", songs_path, :class => 'btn btn-primary' %>
+      </div>
+    </div>
+
     <% if flash[:notice] %>
       <div class="alert alert-info"><%= flash[:notice] %></div>
     <% end %>
@@ -20,20 +28,13 @@
         <%= link_to "Log Out", logout_path, method: "delete", :class => 'btn btn-primary' %>
         <%= link_to "Edit Account", edit_user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
       <% else %>
-        You are not logged in. To get started:
-        <%= link_to "Sign Up", signup_path, :class => 'btn btn-small' %> or
-        <%= link_to "Log In", login_path, :class => 'btn btn-small' %>
+        <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
+        <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
       <% end %>
     </div>
-    <div style="text-align:left;padding:10px">
-      <%= link_to "Musicians", users_path, :class => 'btn btn-primary' %>
-      <%= link_to "Songs", songs_path, :class => 'btn btn-primary' %>
-      <%= link_to "Tracks", tracks_path, :class => 'btn btn-primary' %>
-    </div>
-    <div style="text-align:left;padding:10px">
-      <h3><%= link_to 'JamHub', root_path %></h3>
-      <h4>Global music collaboration.</h4>
-    </div>
+
+    <h4><%= link_to 'JamHub', root_path%></h4>
+    <h5>Global music collaboration.</h5>
     <br><br>
     <h3><%= yield :title %></h3>
     <%= yield %>
