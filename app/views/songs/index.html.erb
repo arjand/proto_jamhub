@@ -1,0 +1,18 @@
+<% provide :title, "Current Songs" %>
+
+<table class="table">
+  <tr>
+    <td>Title</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @songs.each do |song| %>
+    <tr>
+      <td><%= link_to song.title, song_path(song.id), :method => :get %></td>
+      <td><%= link_to 'Edit', edit_song_path(song), :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', song, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to 'Add song', new_song_path, :class => 'btn btn-primary' %></p>

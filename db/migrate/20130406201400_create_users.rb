@@ -1,0 +1,15 @@
+class CreateUsers < ActiveRecord::Migration
+  def change
+    create_table  :users do |t|
+      t.string    :email
+      t.string    :jam_name
+      t.string    :password_digest
+      t.integer   :soundcloud_user_id
+      t.string    :soundcloud_username
+      t.string    :soundcloud_access_token
+      t.string    :soundcloud_refresh_token
+      t.datetime  :soundcloud_expires_at
+      t.timestamps
+    end
+  end
+end

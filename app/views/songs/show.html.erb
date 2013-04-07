@@ -1,0 +1,39 @@
+<% provide :title, "#{@song.title}" %>
+<% if @song.description %>
+  <h4><%= @song.description %></h4>
+<% end %>
+
+<% if @song.users.any? %>
+  <h4>Collaborators</h4>
+  <table class="table">
+    <tr>
+      <% @song.users.each do |user| %>
+       <td><%= link_to user.jam_name, user_path(user.id) %></td>
+      <% end %>
+    </tr>
+  </table>
+<% end %>
+
+<% if @song.tracks.any? %>
+  <h4>Tracks</h4>
+  <table class="table">
+    <tr>
+      <td>Track Title</td>
+      <td>Originator</td>
+      <td>Description</td>
+      <td>Modified</td>
+    </tr>
+
+    <% @song.tracks.each do |track| %>
+      <tr>
+        <td><%= track.title %></td>
+        <td><%= link_to 'Edit', edit_track_path(track), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', track, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<%= link_to 'Add a Track', new_track_path, :class => 'btn btn-primary' %>
+
+<%= link_to 'Home', songs_path, :class => 'btn btn-primary' %>

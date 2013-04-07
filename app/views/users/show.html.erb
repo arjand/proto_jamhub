@@ -1,0 +1,24 @@
+<% provide :title, "#{@user.jam_name}'s Profile" %>
+
+<table class="table">
+  <tr><td><b>Pen Name:</b></td><td><%= @user.jam_name %></td></tr>
+  <tr><td><b>Email:</b></td><td><%= @user.email %></td></tr>
+  <tr><td><b>Member Since:</b></td><td><%= @user.created_at.localtime.strftime("%x") %></td></tr>
+</table>
+
+<table class="table">
+  <tr>
+    <td>Title</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @user.songs.each do |song| %>
+    <tr>
+      <td><%= link_to song.title, song_path(song.id), :method => :get %></td>
+      <% if current_user.id == @user.id %>
+        <td><%= link_to 'Edit', edit_song_path(song), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', song, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>

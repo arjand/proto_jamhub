@@ -1,0 +1,25 @@
+<% provide :title, "Edit Account" %>
+
+<% if @user.errors.any? %>
+  <div class="alert alert-error">
+    <h4>Please correct these problems:</h4>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @user do |f| %>
+  <%= f.label :email %>
+  <%= f.text_field :email %>
+  <%= f.label :jam_name %>
+  <%= f.text_field :jam_name %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit :class => 'btn btn-primary' %>
+<% end %>
+<%= link_to "Delete Account", user_path(current_user.id), method: "delete", :class => 'btn btn-danger' %>
