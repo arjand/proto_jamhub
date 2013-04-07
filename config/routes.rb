@@ -9,16 +9,25 @@ Jahu::Application.routes.draw do
   resources :sessions
   resources :users
   resources :tracks
+  resources :compilations
+  resources :contributions
   
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: "sessions#new", as: 'login'
   delete 'logout', to: 'sessions#destroy', as: 'logout'
+
   match '/you',           :to => 'home#show',    :as => :you
   match '/you/update',    :to => 'home#update',  :as => :you_update
+
+  #put 'add_collaborator', to: 'songs#add_collaborator', as: 'add_collaborator'
+
+  match 'songs/:id/select_collaborator' => 'songs#select_collaborator', :as => :select_collaborator
+  match 'songs/:id/add_collaborator' => 'songs#add_collaborator', :as => :add_collaborator, :via => :put
 
   match '/soundcloud/connect',    :to => 'soundcloud#connect',    :as => :soundcloud_connect
   match '/soundcloud/connected',  :to => 'soundcloud#connected',  :as => :soundcloud_connected
   match '/soundcloud/disconnect', :to => 'soundcloud#disconnect', :as => :soundcloud_disconnect
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

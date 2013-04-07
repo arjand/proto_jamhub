@@ -4,8 +4,8 @@
   <h4><%= @song.description %></h4>
 <% end %>
 
+<h4>Collaborators</h4>
 <% if @song.users.any? %>
-  <h4>Collaborators</h4>
   <table class="table">
     <tr>
       <% @song.users.each do |user| %>
@@ -15,8 +15,8 @@
   </table>
 <% end %>
 
+<h4>Tracks</h4>
 <% if @song.tracks.any? %>
-  <h4>Tracks</h4>
   <table class="table">
     <tr>
       <td>Track Title</td>
@@ -35,4 +35,10 @@
   </table>
 <% end %>
 
-<%= link_to 'Add a Track', new_track_path, :class => 'btn btn-primary' %>
+<% if @song.users.include?(current_user) %>
+  <%= link_to 'Add a Track', compilations_path, :method => :post, :class => 'btn btn-primary' %>
+<% end %>
+
+<% if @song.contributions.find_by_user_id(current_user.id).owner? %>
+  <%= link_to 'Add a Collaborator', select_collaborator_path(@song), :id => @song.id, :class => 'btn btn-primary' %>
+<% end %>

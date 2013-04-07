@@ -8,11 +8,12 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song = current_user.songs.new(params[:song])
-    if @song.save
-      Contribution.create(:song_id => @song.id, :user_id => current_user.id)
+    # @song = current_user.songs.create(params[:song])
+    if @song = current_user.songs.create(params[:song])
+      @song.contributions.first.update_attribute(:owner, true)
+      # Contribution.create(:song_id => @song.id, :user_id => current_user.id, :owner => true)
       flash[:notice] = "Your song was successfully created! YAY!"
-      redirect_to song_path(@song)
+      redirect_to user_path(current_user)
     else
       redirect_to :back
       flash[:alert] = "Please make sure all fields are filled in and try again."
@@ -41,6 +42,19 @@ class SongsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def select_collaborator
+    @song = Song.find(params[:id])
+    @users = User.all
+    render :select_collaborator
+  end
+
+  def add_collaborator
+    p params
+    @song = Song.find(params[:id])
+    Contribution.create(:song_id => @song.id, :user_id => params[:user_id], :owner => false)
+    redirect_to song_path(@song)
   end
 
   def destroy
