@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize, only: [:index, :edit, :destroy, :update, :show]
+  before_filter :authorize, only: [:show, :edit, :destroy, :update, :index]
 
   def new
     @user = User.new
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to songs_path, notice: "You have created your user account!"
+      redirect_to user_path(@user), notice: "You have created your user account!"
     else
       flash.now[:alert] = "There were errors"
       render :new

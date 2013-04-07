@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
-  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy]
+
+  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy, :show, :index]
 
   def new
     @song = Song.new
@@ -29,13 +30,13 @@ class SongsController < ApplicationController
 
   def edit
     @song = Song.find(params[:id])
-    @genres = Genre.all
+    @tracks = current_user.tracks.all
   end
 
   def update
     @song = Song.find(params[:id])
     if @song.update_attributes(params[:song])
-      flash[:notice] = "Your contact was successfully updated! WOO!"
+      flash[:notice] = "Your song was successfully updated!"
       redirect_to song_path(@song)
     else
       render :edit
@@ -46,7 +47,7 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @song.destroy
     flash[:notice] = "Your song was successfully deleted."
-    redirect_to songs_path
+    redirect_to user_path(current_user)
   end
 
 end

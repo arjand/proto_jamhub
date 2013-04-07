@@ -13,5 +13,9 @@ class Song < ActiveRecord::Base
 
   has_many :classifications
   has_many :genres, :through => :classifications
+
+  def owner
+    self.users.where("owner = true").first
+  end
   
 end

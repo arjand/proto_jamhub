@@ -1,14 +1,21 @@
 <% provide :title, "#{@user.jam_name}'s Profile" %>
 
 <table class="table">
-  <tr><td><b>Pen Name:</b></td><td><%= @user.jam_name %></td></tr>
-  <tr><td><b>Email:</b></td><td><%= @user.email %></td></tr>
+  <tr><td><b>Jam Name:</b></td><td><%= @user.jam_name %></td>
+    <td><%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %></td>
+  </tr>
+  <tr>
+    <td><b>Email:</b></td><td><%= @user.email %></td>
+    <td><%= link_to 'Edit', edit_user_path(@user), :class => 'btn btn-primary' %></td>
+  </tr>
   <tr><td><b>Member Since:</b></td><td><%= @user.created_at.localtime.strftime("%x") %></td></tr>
 </table>
 
+<h3><%= "#{@user.jam_name}'s Songs" %></h3>
+
 <table class="table">
   <tr>
-    <td>Title</td>
+    <td></td>
     <td></td>
     <td></td>
   </tr>
@@ -22,3 +29,4 @@
     </tr>
   <% end %>
 </table>
+<%= link_to 'Add Song', new_song_path, :class => 'btn btn-primary' %>

@@ -1,4 +1,5 @@
 <% provide :title, "#{@song.title}" %>
+
 <% if @song.description %>
   <h4><%= @song.description %></h4>
 <% end %>
@@ -35,5 +36,3 @@
 <% end %>
 
 <%= link_to 'Add a Track', new_track_path, :class => 'btn btn-primary' %>
-
-<%= link_to 'Home', songs_path, :class => 'btn btn-primary' %>

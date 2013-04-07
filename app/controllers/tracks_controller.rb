@@ -1,6 +1,6 @@
 class TracksController < ApplicationController
 
-  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy, :show, :index]
 
   # GET /tracks
   def index
